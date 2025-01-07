@@ -1,4 +1,3 @@
-import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "./pages/home/Home";
 import { AddProperty } from "./pages/add-property/AddProperty";
@@ -20,7 +19,7 @@ const route = createBrowserRouter([
         element: <AddProperty />,
       },
       {
-        path: "/view-property/:id",
+        path: "view-property/:id",
         element: <ViewProperty />,
       },
     ],
