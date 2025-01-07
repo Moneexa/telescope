@@ -1,4 +1,4 @@
-import { Map } from "../../shared-components/Map";
+import { Map } from "../../shared/Map";
 import { PropertyForm } from "./property-form/PropertyForm";
 
 export function AddProperty() {
