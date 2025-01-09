@@ -1,12 +1,10 @@
-import { Map } from "../../shared/Map";
-import { PropertyForm } from "./property-form/PropertyForm";
+import { PropertyForm } from "./PropertyForm";
 
 export function AddProperty() {
   return (
-    <>
-      This is AddProperty
+    <div className="flex flex-col p-5">
+      <div className="text-bold">Register Your Property...</div>
       <PropertyForm />
-      <Map />
-    </>
+    </div>
   );
 }
