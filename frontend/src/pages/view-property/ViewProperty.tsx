@@ -19,7 +19,7 @@ export function ViewProperty() {
     return <div>Loading...</div>;
   } else if (properties.status === "error") {
     return (
-      <div className="py-5">
+      <div className="p-5">
         <Notification
           color="red"
           variant="destructive"
@@ -31,7 +31,7 @@ export function ViewProperty() {
 
   if (properties.data.length === 0) {
     return (
-      <div className="py-5">
+      <div className="p-5">
         <Notification
           variant="default"
           msg="There is No Property, Please add one"
@@ -44,7 +44,7 @@ export function ViewProperty() {
   const images = [home1, home2, home3];
   if (!property) {
     return (
-      <div className="py-5">
+      <div className="p-5">
         <Notification
           variant="destructive"
           color="red"

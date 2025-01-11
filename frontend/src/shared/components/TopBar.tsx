@@ -4,15 +4,15 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import logo from "@/assets/file.png";
+import logo from "@/assets/logo.svg";
 export function TopBar() {
   return (
     <>
       <NavigationMenu>
         <NavigationMenuList>
           <Link to="/">
-            <NavigationMenuItem>
-              <img width={75} src={logo} />
+            <NavigationMenuItem className="p-3">
+              <img width={150} src={logo} />
             </NavigationMenuItem>
           </Link>
         </NavigationMenuList>

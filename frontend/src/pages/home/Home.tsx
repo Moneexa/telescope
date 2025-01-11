@@ -13,7 +13,7 @@ export function Home() {
     return <div>Loading...</div>;
   } else if (properties.status === "error") {
     return (
-      <div className="py-5">
+      <div className="p-5">
         <Notification
           variant="destructive"
           color="red"
@@ -32,7 +32,7 @@ export function Home() {
               <TabsTrigger value="map">Property Map</TabsTrigger>
             </TabsList>
           </div>
-          <Button className="absolute right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <Button className="absolute right-0 font-bold py-2 px-4 rounded">
             <Link to="/add-property">Add Property</Link>
           </Button>
         </div>
