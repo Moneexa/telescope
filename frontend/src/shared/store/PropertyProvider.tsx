@@ -1,4 +1,4 @@
-import { PropertyList, Response } from "@/types";
+import { Property, PropertyList, Response } from "@/types";
 import React, {
   createContext,
   useContext,
@@ -6,10 +6,12 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
+import { getProperties } from "@/shared/apis/apis";
 
 interface PropertyContextType {
   properties: Response<PropertyList>;
-  getList: () => void;
+  getPropertiesList: () => void;
+  addPropertyItemInList: (item: Property) => void;
 }
 
 const PropertyContext = createContext<PropertyContextType | undefined>(
@@ -21,25 +23,32 @@ const PropertyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     status: "loading",
   });
   useEffect(() => {
-    getList();
+    getPropertiesList();
   }, []);
 
-  const getList = async () => {
-    const propertiesResponse = await fetch("/api/properties/");
-    if (propertiesResponse.ok) {
-      const propertiesList = await propertiesResponse.json();
-      console.log(propertiesList);
-      setProperties({
-        status: "success",
-        data: propertiesList.properties,
-      });
-    } else {
-      setProperties({ status: "error", error: propertiesResponse.statusText });
+  const getPropertiesList = async () => {
+    const propertiesResponse = await getProperties();
+    setProperties(propertiesResponse);
+  };
+
+  const addPropertyItemInList = (item: Property) => {
+    const propertyList = structuredClone(properties);
+    if (propertyList.status === "success") {
+      const propertiesList = propertyList.data;
+      propertiesList.push(item);
+      propertyList.data = propertiesList;
+      setProperties(propertyList);
     }
   };
 
   return (
-    <PropertyContext.Provider value={{ properties, getList }}>
+    <PropertyContext.Provider
+      value={{
+        properties,
+        getPropertiesList,
+        addPropertyItemInList,
+      }}
+    >
       {children}
     </PropertyContext.Provider>
   );
