@@ -1,20 +1,20 @@
 import { usePropertyContext } from "@/shared/store/PropertyProvider";
-import { InformationGrid } from "@/app-components/grid/Grid";
+import { InformationGrid } from "@/shared/components/grid/InformationGrid";
 
 export function ListProperty() {
   const { properties } = usePropertyContext();
   if (properties.status === "success") {
+    const property = properties.data.map((prop) => ({
+      id: prop.id,
+      title: prop.name,
+      subtitle: `Financial Risk: ${prop.totalFinancialRisk}`,
+      details: `Ratio: ${prop.noRelevantRisks}/${prop.noHandledRisks}`,
+      link: `/view-property/${prop.id}`,
+    }));
     return (
-      <InformationGrid
-        data={properties.data}
-        keyExtractor={(item) => item.id}
-        cardPropsExtractor={(item) => ({
-          title: item.name,
-          subtitle: `Financial Risk: ${item.totalFinancialRisk}`,
-          details: `Ratio: ${item.noRelevantRisks}/${item.noHandledRisks}`,
-          link: `/view-property/${item.id}`,
-        })}
-      />
+      <div>
+        <InformationGrid property={property} />
+      </div>
     );
   }
 }
