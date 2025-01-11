@@ -20,7 +20,7 @@ const Breadcrumbs = () => {
 
   return (
     <div className="flex justify-end">
-      <nav className="p-5 text-sm text-blue-600 underline">
+      <nav className="px-5 py-1 text-sm text-blue-600 underline">
         <Breadcrumb>
           <BreadcrumbItem>
             <BreadcrumbLink href="/">Home {">"} </BreadcrumbLink>

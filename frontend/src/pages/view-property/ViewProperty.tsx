@@ -44,7 +44,7 @@ export function ViewProperty() {
   const images = [home1, home2, home3];
   if (!property) {
     return (
-      <div className="p-5">
+      <div className="py-5">
         <Notification
           variant="destructive"
           color="red"
@@ -57,8 +57,8 @@ export function ViewProperty() {
 
   console.log(property.coordinates);
   return (
-    <div className="flex flex-col p-5">
-      <div className="text-3xl p-5">Property Details</div>
+    <div className="flex flex-col px-5 py-1">
+      <div className="text-3xl px-5 ">Property Details</div>
       <InformationPanel
         infoData={informationPanelPropertyData}
         images={images}
