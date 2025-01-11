@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
-import { TopBar } from "./shared/TopBar";
-import Breadcrumbs from "./shared/Breadcrumb";
+import { TopBar } from "@/shared/components/TopBar";
+import Breadcrumbs from "@/shared/components/Breadcrumb";
+import { Toaster } from "./components/ui/toaster";
 
 export function Layout() {
   return (
@@ -8,6 +9,7 @@ export function Layout() {
       <TopBar />
       <Breadcrumbs />
       <Outlet />
+      <Toaster />
     </div>
   );
 }
