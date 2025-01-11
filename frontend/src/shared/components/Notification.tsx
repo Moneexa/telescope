@@ -1,5 +1,5 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal } from "lucide-react";
+import { Info, MessageCircleWarningIcon } from "lucide-react";
 
 export function Notification({
   variant,
@@ -12,7 +12,10 @@ export function Notification({
 }) {
   return (
     <Alert color={color} variant={variant}>
-      <Terminal className="h-4 w-4" />
+      {variant === "default" && <Info className="h-4 w-4" />}
+      {variant === "destructive" && (
+        <MessageCircleWarningIcon className="h-4 w-4" />
+      )}
       <AlertTitle>Heads Up</AlertTitle>
       <AlertDescription>{msg}</AlertDescription>
     </Alert>

@@ -19,7 +19,13 @@ export function ViewProperty() {
     return <div>Loading...</div>;
   } else if (properties.status === "error") {
     return (
-      <Notification color="red" variant="destructive" msg={properties.error} />
+      <div className="py-5">
+        <Notification
+          color="red"
+          variant="destructive"
+          msg={properties.error}
+        />
+      </div>
     );
   }
 

@@ -13,14 +13,12 @@ export function Home() {
     return <div>Loading...</div>;
   } else if (properties.status === "error") {
     return (
-      <div>
-        <div className="py-5">
-          <Notification
-            variant="destructive"
-            color="red"
-            msg={properties.error}
-          />
-        </div>
+      <div className="py-5">
+        <Notification
+          variant="destructive"
+          color="red"
+          msg={properties.error}
+        />
       </div>
     );
   }
