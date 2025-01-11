@@ -60,7 +60,9 @@ export function MapProvider(props: MapProviderProps) {
               <AdvancedMarker
                 key={location.key}
                 position={location.location}
-                onClick={() => handleMarkerClick(location.key)}
+                onClick={() =>
+                  !props?.onLocationSelect && handleMarkerClick(location.key)
+                }
               >
                 <Pin
                   background={"#FBBC04"}
