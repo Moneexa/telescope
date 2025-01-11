@@ -1,7 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ListProperty } from "./ListProperty";
 import { usePropertyContext } from "@/shared/store/PropertyProvider";
-import { MapProvider } from "@/shared/map-provider/Map";
+import { MapProvider } from "@/shared/components/MapProvider";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -30,7 +30,6 @@ export function Home() {
           </Button>
         </div>
         <TabsContent value="list" className="py-5">
-          <div className="text-bold">List of Properties</div>
           {properties.data.length > 0 ? (
             <ListProperty />
           ) : (
@@ -46,8 +45,7 @@ export function Home() {
           )}
         </TabsContent>
         <TabsContent value="map" className="py-5">
-          <div className="text-bold">List of Properties</div>
-          <div className="min-w-80 h-80">
+          <div className="min-w-80 h-96">
             <MapProvider
               locations={
                 properties.data.length > 0
@@ -55,7 +53,7 @@ export function Home() {
                       key: item.id,
                       location: item.coordinates,
                     }))
-                  : [{ key: "1", location: { lat: 0, lng: 0 } }]
+                  : []
               }
             />
           </div>
