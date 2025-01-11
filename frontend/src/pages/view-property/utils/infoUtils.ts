@@ -1,20 +1,18 @@
 import { Property } from "@/types";
-export const infoUtils = (property: Property) => {
-  const infoData = {
-    name: property.name,
-    address: property.address,
-    city: property.city,
-    zipCode: property.zipCode,
-    totalFinancialRisk: property.totalFinancialRisk,
-    riskRatio: `${property.noHandledRisks} / ${property.noRelevantRisks}`,
-  } as const;
-  const infoFields: { label: string; key: keyof typeof infoData }[] = [
-    { label: "Name", key: "name" },
-    { label: "Address", key: "address" },
-    { label: "City", key: "city" },
-    { label: "Zip Code", key: "zipCode" },
-    { label: "Total Financial Risk", key: "totalFinancialRisk" },
-    { label: "Risk Ratio", key: "riskRatio" },
+export const propertyInfoUtils = (property: Property) => {
+  const informationPanelPropertyData = [
+    { value: property.name, label: "Name" },
+    { value: property.address, label: "Address" },
+    { value: property.city, label: "City" },
+    { value: property.zipCode, label: "Zip Code" },
+    {
+      value: property.totalFinancialRisk,
+      label: "Total Financial Risk (in NOKs)",
+    },
+    {
+      value: `${property.noHandledRisks} / ${property.noRelevantRisks}`,
+      label: "Risk Ratio of Handled over Relevant",
+    },
   ];
-  return { infoData, infoFields };
+  return { informationPanelPropertyData };
 };
