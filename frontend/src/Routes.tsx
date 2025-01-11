@@ -19,7 +19,7 @@ const route = createBrowserRouter([
         element: <AddProperty />,
       },
       {
-        path: "view-property/:id",
+        path: "view-property/:propertyId",
         element: <ViewProperty />,
       },
     ],
