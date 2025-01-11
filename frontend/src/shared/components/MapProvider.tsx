@@ -74,7 +74,7 @@ export function MapProvider(props: MapProviderProps) {
           : ""}
       </Map>
       {props.onLocationSelect && (
-        <div className="absolute top-[60px] left-[8px] bg-white p-4 shadow-lg">
+        <div className="absolute top-14 left-3 bg-white p-4 shadow-lg">
           {addressInfo || "Click on the map to get address details."}
         </div>
       )}
