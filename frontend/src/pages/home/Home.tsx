@@ -4,8 +4,7 @@ import { usePropertyContext } from "@/shared/store/PropertyProvider";
 import { MapProvider } from "@/shared/components/MapProvider";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal } from "lucide-react";
+import { Notification } from "@/shared/components/Notification";
 
 export function Home() {
   const { properties } = usePropertyContext();
@@ -13,7 +12,17 @@ export function Home() {
   if (properties.status === "loading") {
     return <div>Loading...</div>;
   } else if (properties.status === "error") {
-    return <div>Error...</div>;
+    return (
+      <div>
+        <div className="py-5">
+          <Notification
+            variant="destructive"
+            color="red"
+            msg={properties.error}
+          />
+        </div>
+      </div>
+    );
   }
   return (
     <div className="flex flex-col p-5">
@@ -34,13 +43,10 @@ export function Home() {
             <ListProperty />
           ) : (
             <div className="py-5">
-              <Alert>
-                <Terminal className="h-4 w-4" />
-                <AlertTitle>Heads up!</AlertTitle>
-                <AlertDescription>
-                  You can add new properties to your app.
-                </AlertDescription>
-              </Alert>
+              <Notification
+                variant="default"
+                msg="There is no property, add one, by clicking on Add Property button"
+              />
             </div>
           )}
         </TabsContent>

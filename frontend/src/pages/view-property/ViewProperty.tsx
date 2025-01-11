@@ -6,8 +6,7 @@ import { propertyInfoUtils } from "@/pages/view-property/utils/infoUtils";
 import home1 from "@/assets/home1.png";
 import home2 from "@/assets/home2.jpg";
 import home3 from "@/assets/home3.jpeg";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal } from "lucide-react";
+import { Notification } from "@/shared/components/Notification";
 
 export function ViewProperty() {
   const { propertyId } = useParams();
@@ -20,22 +19,17 @@ export function ViewProperty() {
     return <div>Loading...</div>;
   } else if (properties.status === "error") {
     return (
-      <Alert color="red" variant="destructive">
-        <Terminal className="h-4 w-4" />
-        <AlertTitle>There was problem fetching data!</AlertTitle>
-        <AlertDescription>Please try again later.</AlertDescription>
-      </Alert>
+      <Notification color="red" variant="destructive" msg={properties.error} />
     );
   }
 
   if (properties.data.length === 0) {
     return (
       <div className="py-5">
-        <Alert variant="destructive" color="red">
-          <Terminal className="h-4 w-4" />
-          <AlertTitle>Oops!</AlertTitle>
-          <AlertDescription>This property does not exist.</AlertDescription>
-        </Alert>
+        <Notification
+          variant="default"
+          msg="There is No Property, Please add one"
+        />
       </div>
     );
   }
@@ -45,11 +39,11 @@ export function ViewProperty() {
   if (!property) {
     return (
       <div className="py-5">
-        <Alert variant="destructive" color="red">
-          <Terminal className="h-4 w-4" />
-          <AlertTitle>Oops!</AlertTitle>
-          <AlertDescription>This property does not exist.</AlertDescription>
-        </Alert>
+        <Notification
+          variant="destructive"
+          color="red"
+          msg="This property no longer exists!"
+        />
       </div>
     );
   }
