@@ -1,3 +1,4 @@
+from django.forms import model_to_dict
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
@@ -58,7 +59,10 @@ def get_property(request, property_id):
 def insert_property(request):
     if request.method == "POST":
         try:
+            
             data = json.loads(request.body)
+            if data.get('latitude')==0.0 and data.get('longitude')==0.0:
+                 return JsonResponse({'error': "please provide valid location by clicking on the map"},status=400)
             property_instance = Property.objects.create(
                 name=data.get('name'),
                 address=data.get('address'),
@@ -71,6 +75,11 @@ def insert_property(request):
                 noHandledRisks=data.get('noHandledRisks'),
                 totalFinancialRisk=data.get('totalFinancialRisk'),
             )
-            return JsonResponse({'message': 'Property created successfully', 'id': str(property_instance.id)}, status=201)
+            property_dict = model_to_dict(property_instance)
+            property_dict["coordinates"]={"lat":property_dict["latitude"], "lng":property_dict["longitude"]}
+            property_dict.pop("latitude")
+            property_dict.pop("longitude")
+            property_dict["id"]=str(property_instance.id)
+            return JsonResponse({'message': 'Property created successfully', 'property':property_dict}, status=201)
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
