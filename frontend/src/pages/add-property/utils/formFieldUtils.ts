@@ -6,12 +6,14 @@ export const fieldMeta: Array<{
   label: string;
   placeholder: string;
   type: string;
+  className?: string;
 }> = [
   {
     name: "name",
     label: "Property Name",
     placeholder: "Enter username",
     type: "text",
+    className: "md:col-span-2",
   },
   {
     name: "totalFinancialRisk",
@@ -36,6 +38,7 @@ export const fieldMeta: Array<{
     label: "Address",
     placeholder: "Enter address",
     type: "text",
+    className: "md:col-span-2",
   },
   {
     name: "zipCode",
@@ -43,7 +46,12 @@ export const fieldMeta: Array<{
     placeholder: "Enter zip code",
     type: "text",
   },
-  { name: "city", label: "City", placeholder: "Enter city", type: "text" },
+  {
+    name: "city",
+    label: "City",
+    placeholder: "Enter city",
+    type: "text",
+  },
   {
     name: "estimatedValue",
     label: "Estimated Value (in NOKs)",
