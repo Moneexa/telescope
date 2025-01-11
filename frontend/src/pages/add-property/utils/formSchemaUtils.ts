@@ -31,12 +31,12 @@ export const formSchema = z.object({
     .refine((val) => !isNaN(val) && val > 0, {
       message: "Must be a positive number.",
     }),
-  latitude: z
-    .number()
-    .refine((val) => !isNaN(val), { message: "Latitude must be required" }),
-  longitude: z
-    .number()
-    .refine((val) => !isNaN(val), { message: "Longitude be a required." }),
+  latitude: z.number().refine((val) => !isNaN(val), {
+    message: "Latitude must be required",
+  }),
+  longitude: z.number().refine((val) => !isNaN(val), {
+    message: "Longitude be a required.",
+  }),
 });
 
 export type FormSchema = z.infer<typeof formSchema>;
