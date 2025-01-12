@@ -7,11 +7,18 @@ import home1 from "@/assets/home1.png";
 import home2 from "@/assets/home2.jpg";
 import home3 from "@/assets/home3.jpeg";
 import { Notification } from "@/shared/components/Notification";
+import { useMemo } from "react";
 
 export function ViewProperty() {
   const { propertyId } = useParams();
 
   const { properties } = usePropertyContext();
+  const property = useMemo(() => {
+    if (properties.status === "success" && propertyId) {
+      return properties.data.find((item) => item.id === propertyId);
+    }
+  }, [properties, propertyId]);
+
   if (!propertyId) {
     return <div>Invalid ID</div>;
   }
@@ -40,7 +47,6 @@ export function ViewProperty() {
     );
   }
 
-  const property = properties.data.find((item) => item.id === propertyId);
   const images = [home1, home2, home3];
   if (!property) {
     return (
