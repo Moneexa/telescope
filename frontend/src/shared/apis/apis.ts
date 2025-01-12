@@ -93,3 +93,33 @@ export const postPropertyItem = async (
     return propertyDataPostResponse;
   }
 };
+
+export const valueAssessmentFromAI = async (propertyInfo: {
+  address: string;
+  zipCode: string;
+  city: string;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+}): Promise<Response<string>> => {
+  const response = await fetchWrapper<{ response: string }>({
+    endpoint: "http://localhost:11434/api/generate",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      model: "llama3.2", // or another model available in your Ollama
+      stream: false,
+      prompt: `give estimated value of this property as per market value in 1 sentence, make sure to give absolute educated guess based value for this 3-bedroom residential property ${JSON.stringify(
+        propertyInfo
+      )} please keep the answer in 1 sentence`,
+    },
+  });
+  if (response.status === "success") {
+    return { status: "success", data: response.data.response };
+  } else {
+    return response;
+  }
+};
