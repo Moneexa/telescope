@@ -1,9 +1,5 @@
-import { useLocation } from "react-router-dom";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-} from "@/components/ui/breadcrumb"; // Assuming you have this breadcrumb component from ShadCN
+import { Link, useLocation } from "react-router-dom";
+import { Breadcrumb, BreadcrumbItem } from "@/components/ui/breadcrumb"; // Assuming you have this breadcrumb component from ShadCN
 
 const Breadcrumbs = () => {
   const location = useLocation();
@@ -23,19 +19,19 @@ const Breadcrumbs = () => {
       <nav className="px-5 py-1 text-sm text-blue-600 underline">
         <Breadcrumb>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home {">"} </BreadcrumbLink>
+            <Link to="/">Home {">"}</Link>
           </BreadcrumbItem>
           {pathSegments.map((segment, index) => {
             const href = location.pathname;
 
             return (
-              <BreadcrumbItem>
-                <BreadcrumbLink key={index} href={href} className="underline">
+              <BreadcrumbItem key={index}>
+                <Link to={href} className="underline">
                   {(segment.charAt(0).toUpperCase() + segment.slice(1)).replace(
                     "-",
                     " "
                   )}
-                </BreadcrumbLink>
+                </Link>
               </BreadcrumbItem>
             );
           })}
