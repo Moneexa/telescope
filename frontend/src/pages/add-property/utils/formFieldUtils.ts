@@ -11,7 +11,7 @@ export const fieldMeta: Array<{
   {
     name: "name",
     label: "Property Name",
-    placeholder: "Enter username",
+    placeholder: "Enter Property Name",
     type: "text",
     className: "md:col-span-2",
   },
