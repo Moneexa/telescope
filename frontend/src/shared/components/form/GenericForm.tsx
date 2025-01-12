@@ -16,11 +16,12 @@ export function GenericForm<T extends FieldValues>({
   control: Control<T>;
 }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <>
       {fields.map(({ name, label, placeholder, type, className }) => {
         if (type === "text" || type === "number") {
           return (
             <FormInput
+              key={name}
               name={name}
               label={label}
               placeholder={placeholder}
@@ -31,6 +32,6 @@ export function GenericForm<T extends FieldValues>({
           );
         }
       })}
-    </div>
+    </>
   );
 }
