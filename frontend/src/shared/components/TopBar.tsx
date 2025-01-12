@@ -7,16 +7,14 @@ import {
 import logo from "@/assets/logo.svg";
 export function TopBar() {
   return (
-    <>
-      <NavigationMenu>
-        <NavigationMenuList>
-          <Link to="/">
-            <NavigationMenuItem className="p-3">
-              <img width={150} src={logo} />
-            </NavigationMenuItem>
-          </Link>
-        </NavigationMenuList>
-      </NavigationMenu>
-    </>
+    <NavigationMenu>
+      <NavigationMenuList>
+        <Link to="/">
+          <NavigationMenuItem className="p-3">
+            <img width={150} src={logo} />
+          </NavigationMenuItem>
+        </Link>
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 }
