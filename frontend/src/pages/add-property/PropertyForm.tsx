@@ -35,6 +35,7 @@ export function PropertyForm() {
     control,
     handleSubmit,
     setValue,
+    getValues,
     formState: { isValid },
   } = form;
 
@@ -91,7 +92,14 @@ export function PropertyForm() {
               {location.lat !== 0.0 && location.lng != 0.0 && (
                 <div className="col-span-1 flex items-end pb-2">
                   {location.lat !== 0.0 && location.lng !== 0 && (
-                    <Popup location={location} />
+                    <Popup
+                      addressValues={{
+                        address: getValues("address"),
+                        city: getValues("city"),
+                        zipCode: getValues("zipCode"),
+                        location: location,
+                      }}
+                    />
                   )}
                 </div>
               )}
